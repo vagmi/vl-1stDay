@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1 Timesheets #{content}
+  form(action="/time_entries" method="post")
+    input(type="text", name="project_id", placeholder="Project")
+    input(type="text", name="description", placeholder="Description")
+    label
+      input(type="checkbox",checked=true, placeholder="billable")
+      Billable
+    input(type="number", name="minutes", placeholder="minutes")
+    input(type="submit", value="go")
+  .time_entries
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+    .time_entry
+      span.project Some Project
+      span.description Description
+      span.billable Billable
+      span.time Time in minutes
+
+

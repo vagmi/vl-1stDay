@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+  <title>My Knockout App</title>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="js/knockout-2.3.0.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="name-section">
+      <h1 data-bind="text: fullName">My text</h1>
+      <input data-bind="value: fullName" type="text" value="something"/>
+      <ul data-bind="foreach: interests" id="interests">
+      <h3>Displaying interests for <span data-bind="text: $parent.fullName"></span></h3>
+        <li data-bind="text: $data">t</li>
+      </ul>
+    </div>
+      <h2 data-bind="text: name">My text</h2>
+  </body>
+  <script>
+  window.viewModel = {
+    firstName: ko.observable("Vagmi"),
+    lastName: ko.observable("Mudumbai"),
+    interests: ko.observableArray(["clojure","node","ruby"])
+  };
+viewModel.fullName= ko.computed({
+read: (function(){
+       console.log(this);
+       return this.firstName() + " " + this.lastName();
+       }).bind(viewModel),
+write: (function(val) {
+        var splitAt = val.indexOf(" ");
+        this.firstName(val.slice(0,splitAt));
+        this.lastName(val.slice(splitAt,val.length));
+        }).bind(viewModel)
+});
+  var nameSection = document.getElementById("name-section");
+  ko.applyBindings(viewModel,nameSection);
+  //ko.applyBindings(viewModel.interests, document.getElementById("interests"))
+</script>
+</html>
